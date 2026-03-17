@@ -1,21 +1,21 @@
 [project.urls]
-Homepage = "https://github.com/treeolivetech/christianwhocodes"
-Documentation = "https://github.com/treeolivetech/christianwhocodes#readme"
-Repository = "https://github.com/treeolivetech/christianwhocodes"
-Issues = "https://github.com/treeolivetech/christianwhocodes/issues"
-# Changelog = "https://github.com/treeolivetech/christianwhocodes/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/kvnwaks/pkg-christianwhocodes"
+Documentation = "https://github.com/kvnwaks/pkg-christianwhocodes#readme"
+Repository = "https://github.com/kvnwaks/pkg-christianwhocodes"
+Issues = "https://github.com/kvnwaks/pkg-christianwhocodes/issues"
+# Changelog = "https://github.com/kvnwaks/pkg-christianwhocodes/blob/main/CHANGELOG.md"
 
 [project]
 name = "christianwhocodes"
-version = "1.5.1"
+version = "1.5.2"
 description = "Utilities for developers."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-authors = [{ name = "Treeolive Technologies", email = "hi@treeolive.tech" }]
+authors = [{ name = "Kevin Wasike Wakhisi", email = "kevin@treeolive.tech" }]
 requires-python = ">=3.13"
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.13",
@@ -30,7 +30,7 @@ dependencies = ["pyperclip==1.11.0", "rich==14.3.3"]
 dev = ["ruff>=0.15.6", "ty>=0.0.23"]
 
 [build-system]
-requires = ["uv_build>=0.10.10,<0.11.0"]
+requires = ["uv_build>=0.10.11,<0.11.0"]
 build-backend = "uv_build"
 
 [tool.ruff]
