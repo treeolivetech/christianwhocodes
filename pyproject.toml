@@ -3,11 +3,10 @@ Homepage = "https://github.com/kvnwaks/pkg-christianwhocodes"
 Documentation = "https://github.com/kvnwaks/pkg-christianwhocodes#readme"
 Repository = "https://github.com/kvnwaks/pkg-christianwhocodes"
 Issues = "https://github.com/kvnwaks/pkg-christianwhocodes/issues"
-# Changelog = "https://github.com/kvnwaks/pkg-christianwhocodes/blob/main/CHANGELOG.md"
 
 [project]
 name = "christianwhocodes"
-version = "1.5.3.dev1"
+version = "1.5.3.dev2"
 description = "Utilities for developers."
 readme = "README.md"
 license = "MIT"
@@ -27,7 +26,7 @@ scripts = { christianwhocodes = "christianwhocodes.cli:main" }
 dependencies = ["pyperclip==1.11.0", "rich==14.3.3"]
 
 [dependency-groups]
-dev = ["ruff>=0.15.6", "ty>=0.0.23"]
+dev = ["ruff>=0.15.7", "ty>=0.0.24"]
 
 [build-system]
 requires = ["uv_build>=0.10.11,<0.11.0"]
