@@ -26,6 +26,13 @@ def tag_and_push() -> None:
     version = project.version
     tag = f"v{version}"
 
+    print("Fetching remote tags to sync local tag state...")
+    try:
+        run(["git", "fetch", "--tags", "--prune"], check=True)
+    except CalledProcessError:
+        print("Error: Failed to fetch and prune tags from origin.", file=stderr)
+        exit(ExitCode.ERROR)
+
     print(f"Read version '{version}' from pyproject.toml")
     print(f"Creating git tag: {tag}")
 

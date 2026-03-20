@@ -59,6 +59,11 @@ You can manually trigger a release from the **Actions** tab on GitHub:
 
 _(Note: We highly recommend publishing to `testpypi` first via this method whenever introducing major changes, just to ensure the package builds right!)_
 
+When you manually choose `pypi`, the workflow now checks your `pyproject.toml` version, computes the corresponding tag (`v<version>`), and pushes that tag only if it does not already exist on `origin`.
+The workflow then continues to build and publish in the same run.
+
+Because this tag push happens from inside GitHub Actions, it is not expected to retrigger a second workflow run when using the default GitHub token.
+
 #### Option B: Automatic Release (on Push/Tag)
 
 The workflow is also configured to run automatically and publish to PyPI if you push a version tag matching `v*.*.*`. Note that development releases (tags matching `v*.*.*.dev*`) are explicitly ignored and will not be published.
@@ -69,6 +74,14 @@ We have provided an automated script that uses the project's internal tools to r
 # When run from the root directory
 uv run .github/triggers/uv_publish.py
 ```
+
+Before running the local trigger script, sync remote tags so your local tag state is current:
+
+```bash
+git fetch --tags --prune
+```
+
+The trigger script now also performs this `git fetch --tags --prune` step automatically before creating the version tag, but running the command manually is still a good habit when preparing a release.
 
 This tiny Python script will locally grab your version matching your currently committed `pyproject.toml`, tag it, and instantly upload that tag to trigger the publishing pipeline.
 
