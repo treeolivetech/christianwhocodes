@@ -21,6 +21,9 @@ class Platform:
         "arm64": "arm64",
         "aarch64": "arm64",
         "armv8": "arm64",
+        "armv7l": "arm",
+        "armv7": "arm",
+        "armv6l": "arm",
     }
 
     def __init__(self) -> None:
