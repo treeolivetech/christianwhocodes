@@ -59,7 +59,7 @@ You can manually trigger a release from the **Actions** tab on GitHub:
 
 _(Note: We highly recommend publishing to `testpypi` first via this method whenever introducing major changes, just to ensure the package builds right!)_
 
-When you manually choose `pypi`, the workflow now checks your `pyproject.toml` version, computes the corresponding tag (`v<version>`), and pushes that tag only if it does not already exist on `origin`.
+When you manually choose either `pypi` or `testpypi`, the workflow checks your `pyproject.toml` version, computes the corresponding tag (`v<version>`), and pushes that tag only if it does not already exist on `origin`.
 The workflow then continues to build and publish in the same run.
 
 Because this tag push happens from inside GitHub Actions, it is not expected to retrigger a second workflow run when using the default GitHub token.

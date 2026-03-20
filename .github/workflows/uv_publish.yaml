@@ -36,8 +36,8 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Ensure version tag exists on manual PyPI dispatch
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.index == 'pypi' }}
+      - name: Ensure version tag exists on manual dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         shell: bash
         run: |
           TAG="$(python - <<'PY'

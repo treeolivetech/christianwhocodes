@@ -6,7 +6,7 @@ Issues = "https://github.com/treeolivetech/pkg-christianwhocodes/issues"
 
 [project]
 name = "christianwhocodes"
-version = "1.5.4.dev1"
+version = "1.5.4.dev2"
 description = "Utilities for developers."
 readme = "README.md"
 license = "MIT"
