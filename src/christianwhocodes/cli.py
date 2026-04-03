@@ -3,7 +3,7 @@
 from argparse import ArgumentParser, Namespace
 from sys import exit
 
-from christianwhocodes.commands import CopyCommand, PlatformCommand, RandomStringCommand
+from christianwhocodes.commands import CopyCommand, DeleteCommand, PlatformCommand, RandomStringCommand
 from christianwhocodes.io.console import Text, cprint
 from christianwhocodes.utils.enums import ExitCode
 from christianwhocodes.utils.version import Version
@@ -11,6 +11,7 @@ from christianwhocodes.utils.version import Version
 _random_cmd = RandomStringCommand()
 _copy_cmd = CopyCommand()
 _platform_cmd = PlatformCommand()
+_delete_cmd = DeleteCommand()
 
 
 def handle_default(args: Namespace) -> ExitCode:
@@ -39,6 +40,11 @@ def main() -> None:
     copy = subparsers.add_parser("copy", help=_copy_cmd.help)
     _copy_cmd.add_arguments(copy)
     copy.set_defaults(func=_copy_cmd.handle)
+
+    # 4. Delete Command
+    delete = subparsers.add_parser("cleanup", aliases=["delete", "rm"], help=_delete_cmd.help)
+    _delete_cmd.add_arguments(delete)
+    delete.set_defaults(func=_delete_cmd.handle)
 
     # --- Execution Logic ---
     args = parser.parse_args()
