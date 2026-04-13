@@ -30,7 +30,11 @@ class RandomStringCommand(BaseCommand):
     def add_arguments(self, parser: ArgumentParser) -> None:  # noqa: D102
         parser.add_argument("-l", "--length", type=int, default=16)
         parser.add_argument(
-            "--no-clipboard", dest="no_clipboard", action="store_true", default=False, help="Skip copying to clipboard"
+            "--no-clipboard",
+            dest="no_clipboard",
+            action="store_true",
+            default=False,
+            help="Skip copying to clipboard",
         )
 
     def handle(self, args: Namespace) -> ExitCode:  # noqa: D102

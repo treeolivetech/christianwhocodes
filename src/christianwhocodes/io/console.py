@@ -36,7 +36,9 @@ _THEME = Theme(
 _console = Console(theme=_THEME)
 
 
-def cprint(text: str | list[tuple[str, str | None]], color: str | None = None, end: str = "\n") -> None:
+def cprint(
+    text: str | list[tuple[str, str | None]], color: str | None = None, end: str = "\n"
+) -> None:
     """Print colored text to the console using rich formatting.
 
     *text* can be a plain string or a list of ``(text, color)`` segments

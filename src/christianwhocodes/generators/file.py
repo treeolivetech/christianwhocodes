@@ -7,7 +7,13 @@ from ..io.console import Text, cprint
 from ..utils.enums import PostgresFilename
 from ..utils.platform import Platform
 
-__all__: list[str] = ["FileSpec", "get_pg_service_spec", "get_pgpass_spec", "get_ssh_config_spec", "FileGenerator"]
+__all__: list[str] = [
+    "FileSpec",
+    "get_pg_service_spec",
+    "get_pgpass_spec",
+    "get_ssh_config_spec",
+    "FileGenerator",
+]
 
 
 @dataclass
@@ -39,7 +45,9 @@ def get_pg_service_spec() -> FileSpec:
         "dbname=postgres\n"
         "user=postgres\n"
     )
-    return FileSpec(path=_pg_base_path() / PostgresFilename.PGSERVICE.value, content=content)
+    return FileSpec(
+        path=_pg_base_path() / PostgresFilename.PGSERVICE.value, content=content
+    )
 
 
 def get_pgpass_spec() -> FileSpec:
@@ -48,9 +56,7 @@ def get_pgpass_spec() -> FileSpec:
 
     is_win = Platform().os_name == "windows"
     filename = PostgresFilename.PGPASS.value
-    content = (
-        "# Read more: https://www.postgresql.org/docs/current/libpq-pgpass.html\n\n# hostname:port:database:username:password\n"
-    )
+    content = "# Read more: https://www.postgresql.org/docs/current/libpq-pgpass.html\n\n# hostname:port:database:username:password\n"
     mode = None if is_win else (S_IRUSR | S_IWUSR)
     return FileSpec(path=_pg_base_path() / filename, content=content, chmod_mode=mode)
 
@@ -80,7 +86,10 @@ class FileGenerator:
         if not self._file_needs_content():
             if not self._confirm_overwrite(overwrite):
                 if self.verbose:
-                    cprint(f"Skipped {self.spec.path} (exists and overwrite declined).", Text.INFO)
+                    cprint(
+                        f"Skipped {self.spec.path} (exists and overwrite declined).",
+                        Text.INFO,
+                    )
                 return
             if self.verbose:
                 cprint(f"Overwriting existing file: {self.spec.path}", Text.WARNING)
@@ -99,9 +108,15 @@ class FileGenerator:
                 self.spec.path.chmod(self.spec.chmod_mode)
                 octal_mode = oct(self.spec.chmod_mode)[2:]
                 if self.verbose:
-                    cprint(f"✓ Permissions secured for {self.spec.path} ({octal_mode})", Text.SUCCESS)
+                    cprint(
+                        f"✓ Permissions secured for {self.spec.path} ({octal_mode})",
+                        Text.SUCCESS,
+                    )
             except Exception as e:
-                cprint(f"Error: could not set permissions on {self.spec.path}: {e}", Text.ERROR)
+                cprint(
+                    f"Error: could not set permissions on {self.spec.path}: {e}",
+                    Text.ERROR,
+                )
 
     def _file_needs_content(self) -> bool:
         """Return True if the file does not exist or is empty."""

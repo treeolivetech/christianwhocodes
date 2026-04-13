@@ -41,7 +41,9 @@ class BaseCommand:
 
     def create_parser(self) -> ArgumentParser:
         """Construct and return the argument parser."""
-        parser = ArgumentParser(prog=self.prog, description=self.help, epilog=self.epilog)
+        parser = ArgumentParser(
+            prog=self.prog, description=self.help, epilog=self.epilog
+        )
         self.add_arguments(parser)
         return parser
 

@@ -1,17 +1,25 @@
+[build-system]
+requires = ["uv_build>=0.11.6,<0.12.0"]
+build-backend = "uv_build"
+
 [project.urls]
+Homepage = "https://github.com/treeolivetech/pkg-christianwhocodes"
+Documentation = "https://github.com/treeolivetech/pkg-christianwhocodes#readme"
 Repository = "https://github.com/treeolivetech/pkg-christianwhocodes"
 Issues = "https://github.com/treeolivetech/pkg-christianwhocodes/issues"
-# Homepage = "https://github.com/treeolivetech/pkg-christianwhocodes"
-# Documentation = "https://github.com/treeolivetech/pkg-christianwhocodes#readme"
+
+[project.scripts]
+christianwhocodes = "christianwhocodes.cli:main"
+cwc = "christianwhocodes.cli:main"
 
 [project]
 name = "christianwhocodes"
-version = "1.5.6.dev1"
+version = "1.5.6"
 description = "Utilities for developers."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-authors = [{ name = "Treeolive Technologies", email = "hi@treeolive.tech" }]
+authors = [{ name = "Kevin Wasike Wakhisi", email = "kevin@treeolive.tech" }]
 requires-python = ">=3.13"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -22,20 +30,14 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-scripts = { christianwhocodes = "christianwhocodes.cli:main", cwc = "christianwhocodes.cli:main" }
-dependencies = ["pyperclip==1.11.0", "rich==14.3.3"]
+dependencies = ["pyperclip==1.11.0", "rich==15.0.0"]
 
 [dependency-groups]
-dev = ["ruff>=0.15.10", "ty>=0.0.29"]
-
-[build-system]
-requires = ["uv_build>=0.11.6,<0.12.0"]
-build-backend = "uv_build"
+dev = ["pre-commit>=4.5.1"]
 
 [tool.ruff]
-line-length = 130
 lint = { select = ["D"], ignore = ["D203", "D213"] }
-format = { skip-magic-trailing-comma = true, docstring-code-format = true }
+format = { docstring-code-format = true }
 
 [[tool.uv.index]]
 name = "testpypi"

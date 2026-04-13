@@ -17,7 +17,9 @@ class TypeConverter:
         return value.lower() in ("true", "1", "yes", "on")
 
     @staticmethod
-    def to_list_of_str(value: Any, transform: Callable[[str], str] | None = None) -> list[str]:
+    def to_list_of_str(
+        value: Any, transform: Callable[[str], str] | None = None
+    ) -> list[str]:
         """Convert a value to a list of strings, with optional per-item transform."""
         result: list[str] = []
         if isinstance(value, list):

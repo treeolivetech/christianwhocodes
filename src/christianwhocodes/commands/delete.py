@@ -21,13 +21,24 @@ class DeleteCommand(BaseCommand):
         """Register CLI arguments for the command."""
         group = parser.add_mutually_exclusive_group(required=True)
         group.add_argument("--file", dest="file_name", help="File name/path to delete.")
-        group.add_argument("--folder", dest="folder_name", help="Folder name/path to delete.")
+        group.add_argument(
+            "--folder", dest="folder_name", help="Folder name/path to delete."
+        )
 
         parser.add_argument(
-            "--dir", dest="base_dir", default=".", help="Directory to search from (default: current working directory)."
+            "--dir",
+            dest="base_dir",
+            default=".",
+            help="Directory to search from (default: current working directory).",
         )
-        parser.add_argument("--recursive", action="store_true", help="Search and delete matches inside subdirectories.")
-        parser.add_argument("--verbose", action="store_true", help="Print each deleted file or folder.")
+        parser.add_argument(
+            "--recursive",
+            action="store_true",
+            help="Search and delete matches inside subdirectories.",
+        )
+        parser.add_argument(
+            "--verbose", action="store_true", help="Print each deleted file or folder."
+        )
 
     def handle(self, args: Namespace) -> ExitCode:
         """Delete the requested target and return the appropriate exit code."""
@@ -38,7 +49,9 @@ class DeleteCommand(BaseCommand):
 
         target = args.file_name or args.folder_name
         assert target is not None
-        targets = self._resolve_targets(base_dir=base_dir, target=target, recursive=args.recursive)
+        targets = self._resolve_targets(
+            base_dir=base_dir, target=target, recursive=args.recursive
+        )
 
         if args.file_name:
             deleted = self._delete_files(targets, args.verbose)
@@ -49,13 +62,17 @@ class DeleteCommand(BaseCommand):
 
         if deleted == 0:
             recursive_suffix = " recursively" if args.recursive else ""
-            print(f"No matching {target_kind} found for '{target}' in {base_dir}{recursive_suffix}.")
+            print(
+                f"No matching {target_kind} found for '{target}' in {base_dir}{recursive_suffix}."
+            )
             return ExitCode.ERROR
 
         print(f"Deleted {deleted} {target_kind}(s).")
         return ExitCode.SUCCESS
 
-    def _resolve_targets(self, base_dir: Path, target: str, recursive: bool) -> list[Path]:
+    def _resolve_targets(
+        self, base_dir: Path, target: str, recursive: bool
+    ) -> list[Path]:
         """Resolve target paths relative to base_dir.
 
         If target contains path separators, it is treated as a relative path from base_dir.

@@ -40,7 +40,10 @@ def tag_and_push() -> None:
         # Create the git tag
         run(["git", "tag", tag], check=True)
     except CalledProcessError:
-        print(f"Error: Failed to create git tag '{tag}'. Does it already exist?", file=stderr)
+        print(
+            f"Error: Failed to create git tag '{tag}'. Does it already exist?",
+            file=stderr,
+        )
         exit(ExitCode.ERROR)
 
     print(f"Pushing tag '{tag}' to origin...")

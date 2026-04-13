@@ -10,7 +10,9 @@ def max_length_from_choices(choices: Iterable[tuple[str, Any]]) -> int:
     return max((len(choice[0]) for choice in choices), default=0)
 
 
-def normalize_url_path(url: str, leading_slash: bool = False, trailing_slash: bool = True) -> str:
+def normalize_url_path(
+    url: str, leading_slash: bool = False, trailing_slash: bool = True
+) -> str:
     """Normalize a URL path by ensuring consistent slash usage.
 
     Collapses duplicate slashes and optionally adds or strips leading and

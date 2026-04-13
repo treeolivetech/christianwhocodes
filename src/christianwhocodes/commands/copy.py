@@ -27,7 +27,9 @@ class CopyCommand(BaseCommand):
 
     def add_arguments(self, parser: ArgumentParser) -> None:  # noqa: D102
         parser.add_argument("-i", "--input", "--source", dest="source", required=True)
-        parser.add_argument("-o", "--output", "--destination", dest="destination", required=True)
+        parser.add_argument(
+            "-o", "--output", "--destination", dest="destination", required=True
+        )
 
     def handle(self, args: Namespace) -> ExitCode:  # noqa: D102
         success = copy_path(args.source, args.destination)

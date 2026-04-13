@@ -13,7 +13,12 @@ class Platform:
     :class:`ValueError` for unsupported architectures.
     """
 
-    _PLATFORM_MAP: Final[dict[str, str]] = {"darwin": "macos", "linux": "linux", "windows": "windows", "android": "android"}
+    _PLATFORM_MAP: Final[dict[str, str]] = {
+        "darwin": "macos",
+        "linux": "linux",
+        "windows": "windows",
+        "android": "android",
+    }
     _ARCH_MAP: Final[dict[str, str]] = {
         "x86_64": "x64",
         "amd64": "x64",
@@ -36,7 +41,9 @@ class Platform:
         platform_name = self._PLATFORM_MAP.get(system_platform)
         if not platform_name:
             supported = ", ".join(dict.fromkeys(self._PLATFORM_MAP.values()))
-            raise OSError(f"Unsupported operating system: {system_platform}. Supported: {supported}")
+            raise OSError(
+                f"Unsupported operating system: {system_platform}. Supported: {supported}"
+            )
         return platform_name
 
     def _detect_architecture(self) -> str:

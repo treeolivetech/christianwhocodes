@@ -3,7 +3,12 @@
 from argparse import ArgumentParser, Namespace
 from sys import exit
 
-from christianwhocodes.commands import CopyCommand, DeleteCommand, PlatformCommand, RandomStringCommand
+from christianwhocodes.commands import (
+    CopyCommand,
+    DeleteCommand,
+    PlatformCommand,
+    RandomStringCommand,
+)
 from christianwhocodes.io.console import Text, cprint
 from christianwhocodes.utils.enums import ExitCode
 from christianwhocodes.utils.version import Version
@@ -16,7 +21,9 @@ _delete_cmd = DeleteCommand()
 
 def handle_default(args: Namespace) -> ExitCode:
     """Handle default command when no subcommand is specified."""
-    cprint("...but the people who know their God shall be strong and do exploits. — Daniel 11:32")
+    cprint(
+        "...but the people who know their God shall be strong and do exploits. — Daniel 11:32"
+    )
     return ExitCode.SUCCESS
 
 
@@ -25,14 +32,24 @@ def main() -> None:
     parser = ArgumentParser(prog="christianwhocodes", description="Dev Utilities")
 
     # 1. Global Metadata
-    parser.add_argument("-v", "--version", action="version", version=Version.get("christianwhocodes")[0])
-    parser.add_argument("-p", "--platform", action="store_true", default=False, help="Display platform information")
+    parser.add_argument(
+        "-v", "--version", action="version", version=Version.get("christianwhocodes")[0]
+    )
+    parser.add_argument(
+        "-p",
+        "--platform",
+        action="store_true",
+        default=False,
+        help="Display platform information",
+    )
     parser.set_defaults(func=handle_default)  # Default if no subcommand
 
     subparsers = parser.add_subparsers(dest="command")
 
     # 2. Random String Command
-    rand = subparsers.add_parser("random", aliases=["rand", "randomstring"], help=_random_cmd.help)
+    rand = subparsers.add_parser(
+        "random", aliases=["rand", "randomstring"], help=_random_cmd.help
+    )
     _random_cmd.add_arguments(rand)
     rand.set_defaults(func=_random_cmd.handle)
 
@@ -42,7 +59,9 @@ def main() -> None:
     copy.set_defaults(func=_copy_cmd.handle)
 
     # 4. Delete Command
-    delete = subparsers.add_parser("cleanup", aliases=["delete", "rm"], help=_delete_cmd.help)
+    delete = subparsers.add_parser(
+        "cleanup", aliases=["delete", "rm"], help=_delete_cmd.help
+    )
     _delete_cmd.add_arguments(delete)
     delete.set_defaults(func=_delete_cmd.handle)
 
