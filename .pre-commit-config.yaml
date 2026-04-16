@@ -1,28 +1,13 @@
 repos:
-  # 1. Sync deps first so all tools are available
-  - repo: local
-    hooks:
-      - id: uv-sync
-        name: uv sync
-        description: Sync dependencies with uv.
-        entry: uv sync
-        language: system
-        pass_filenames: false
-        require_serial: true
-
-  # 2. Non-Python formatting (Prettier) — before any linters read those files
+  # 1. Non-Python formatting (Prettier) — before any linters read those files
   # Prettier
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.8.2
+    rev: v3.8.3
     hooks:
       - id: prettier
-        types_or: [toml, scss, css, javascript, json, yaml, markdown]
-        exclude: |
-          (?x)^(
-            .*/vendor/.*
-          )$
+        types_or: [markdown]
 
-  # 3. Python formatting before linting — linter sees already-formatted code
+  # 2. Python formatting before linting — linter sees already-formatted code
   # Ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.10

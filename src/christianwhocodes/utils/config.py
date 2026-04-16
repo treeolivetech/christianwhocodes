@@ -14,10 +14,9 @@ class PyProject:
         from tomllib import load
 
         self._toml_path = toml_path
+
         with open(toml_path, "rb") as f:
             full_data = load(f)
-        if "project" not in full_data:
-            raise KeyError(f"[project] section not found in {toml_path}")
         self._data: dict[str, Any] = full_data
 
     @property
